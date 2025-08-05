@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://pokeerome.github.io/rate-my-day",
   "scripts": {
-    "homepage": "https://pokeerome.github.io/rate-my-day/",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
