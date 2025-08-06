@@ -65,7 +65,7 @@ export default function Entryform() {
         <div className="text-center mt-12">
           <button
             onClick={() => setStep(1)}
-            className="w-full sm:w-auto px-6 py-3 text-lg sm:text-xl font-semibold rounded-xl hover:scale-105 transition-transform bg-orange-400 text-white"
+            className="w-full sm:w-auto px-6 py-3 text-lg sm:text-xl sm:mb-3 font-semibold rounded-xl hover:scale-105 transition-transform bg-orange-400 text-white"
           >
             Start New Entry
           </button>
