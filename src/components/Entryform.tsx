@@ -42,7 +42,7 @@ export default function Entryform() {
   const handleDelete = (index: number) => {
     const updatedEntries = entries.filter((_, i) => i !== index);
     setEntries(updatedEntries);
-    localStorage.setItem("entries", JSON.stringify(updatedEntries)); // ✅ add this
+    localStorage.setItem("entries", JSON.stringify(updatedEntries));
   };
 
   const handleEdit = (index: number) => {
@@ -52,11 +52,11 @@ export default function Entryform() {
     setSelectedProductivity(entry.productivity);
     setSaveNote(entry.note);
 
-    const updatedEntries = entries.filter((_, i) => i !== index); // Remove old entry
+    const updatedEntries = entries.filter((_, i) => i !== index);
     setEntries(updatedEntries);
-    localStorage.setItem("entries", JSON.stringify(updatedEntries)); // ✅ add this
+    localStorage.setItem("entries", JSON.stringify(updatedEntries));
 
-    setStep(1); // Restart entry form
+    setStep(1);
   };
 
   return (
