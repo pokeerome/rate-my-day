@@ -19,7 +19,7 @@ export default function Productivitypicker({
       <p className="text-xl sm:text-2xl text-amber-300 h-6 mb-8 mt-2 text-center">
         {hoveredId || ""}
       </p>
-      <div className="flex flex-wrap justify-center gap-4 text-3xl sm:text-5xl">
+      <div className="flex flex-wrap justify-center gap-6 text-3xl sm:text-5xl">
         {productivityLevels.map((level, index) => (
           <button
             key={index}
