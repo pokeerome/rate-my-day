@@ -62,16 +62,16 @@ export default function Entryform() {
   return (
     <div className="flex flex-col items-center w-full">
       {step === 0 && (
-        <div className="text-center mt-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12 text-center">
           <button
             onClick={() => setStep(1)}
-            className="w-full sm:w-auto px-6 py-3 text-lg sm:text-xl sm:mb-3 font-semibold rounded-xl hover:scale-105 transition-transform bg-orange-400 text-white"
+            className="px-6 py-3 bg-orange-400 text-white text-xl font-semibold rounded-xl hover:scale-105 transition-transform w-60"
           >
             Start New Entry
           </button>
           <button
             onClick={() => setStep(5)}
-            className="w-full sm:w-auto px-6 py-3 text-lg sm:text-xl font-semibold rounded-xl hover:scale-105 transition-transform bg-blue-200 text-blue-800"
+            className="px-6 py-3 bg-blue-200 text-blue-800 text-xl font-semibold rounded-xl hover:scale-105 transition-transform w-60"
           >
             See Your Entries
           </button>
