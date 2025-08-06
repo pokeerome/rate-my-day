@@ -15,9 +15,14 @@ type Entry = {
 export default function Entryform() {
   const [step, setStep] = useState(0);
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
-  const [selectedProductivity, setSelectedProductivity] = useState<string | null>(null);
+  const [selectedProductivity, setSelectedProductivity] = useState<
+    string | null
+  >(null);
   const [saveNote, setSaveNote] = useState<string>("");
-  const [entries, setEntries] = useState<Entry[]>([]);
+  const [entries, setEntries] = useState<Entry[]>(() => {
+    const saved = localStorage.getItem("entries");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const moods = [
     { id: "angry", emoji: "😠" },
@@ -35,17 +40,23 @@ export default function Entryform() {
   ];
 
   const handleDelete = (index: number) => {
-    const updated = entries.filter((_, i) => i !== index);
-    setEntries(updated);
+    const updatedEntries = entries.filter((_, i) => i !== index);
+    setEntries(updatedEntries);
+    localStorage.setItem("entries", JSON.stringify(updatedEntries)); // ✅ add this
   };
 
   const handleEdit = (index: number) => {
     const entry = entries[index];
+
     setSelectedMood(entry.mood.id);
     setSelectedProductivity(entry.productivity);
     setSaveNote(entry.note);
-    setEntries(entries.filter((_, i) => i !== index));
-    setStep(1);
+
+    const updatedEntries = entries.filter((_, i) => i !== index); // Remove old entry
+    setEntries(updatedEntries);
+    localStorage.setItem("entries", JSON.stringify(updatedEntries)); // ✅ add this
+
+    setStep(1); // Restart entry form
   };
 
   return (
@@ -88,11 +99,7 @@ export default function Entryform() {
       )}
 
       {step === 3 && (
-        <Note
-          note={saveNote}
-          setNote={setSaveNote}
-          onSave={() => setStep(4)}
-        />
+        <Note note={saveNote} setNote={setSaveNote} onSave={() => setStep(4)} />
       )}
 
       {step === 4 && (
@@ -112,7 +119,11 @@ export default function Entryform() {
               timestamp: new Date().toISOString(),
             };
 
-            setEntries((prev) => [...prev, newEntry]);
+            setEntries((prev) => {
+              const updated = [...prev, newEntry];
+              localStorage.setItem("entries", JSON.stringify(updated));
+              return updated;
+            });
             setSelectedMood(null);
             setSelectedProductivity(null);
             setSaveNote("");
@@ -127,6 +138,10 @@ export default function Entryform() {
           onBack={() => setStep(0)}
           onEdit={handleEdit}
           onDelete={handleDelete}
+          onClear={() => {
+            localStorage.removeItem("entries");
+            setEntries([]);
+          }}
         />
       )}
     </div>
