@@ -12,12 +12,14 @@ export default function Productivitypicker({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-6xl mb-2 mt-20">Rate your productivity</h1>
-      <p className="text-2xl text-amber-300 h-6 mb-10 mt-6">
-        {hoveredId ? hoveredId : ""}
+    <div className="flex flex-col items-center w-full px-4">
+      <h1 className="text-3xl sm:text-5xl font-bold text-center mb-4 mt-16 break-words">
+        Rate your productivity
+      </h1>
+      <p className="text-xl sm:text-2xl text-amber-300 h-6 mb-8 mt-2 text-center">
+        {hoveredId || ""}
       </p>
-      <div className="flex gap-4 text-6xl">
+      <div className="flex flex-wrap justify-center gap-4 text-3xl sm:text-5xl">
         {productivityLevels.map((level, index) => (
           <button
             key={index}
@@ -26,7 +28,7 @@ export default function Productivitypicker({
             onMouseLeave={() => setHoveredId(null)}
             className="hover:scale-125 transition-transform duration-200 cursor-pointer"
           >
-            {level.label}
+            {level.label.repeat(index + 1)}
           </button>
         ))}
       </div>

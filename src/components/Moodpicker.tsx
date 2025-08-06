@@ -5,9 +5,11 @@ type MoodPickerProps = {
 
 export default function MoodPicker({ moods, onSelect }: MoodPickerProps) {
   return (
-    <>
-      <h1 className="text-6xl mb-27 mt-20">Pick your mood today</h1>
-      <div className="flex gap-4 items-center text-8xl">
+    <div className="flex flex-col items-center w-full px-4">
+      <h1 className="text-3xl sm:text-5xl font-bold text-center mb-12 mt-16 break-words">
+        Pick your mood today
+      </h1>
+      <div className="flex flex-wrap justify-center gap-6 text-6xl sm:text-7xl">
         {moods.map((mood) => (
           <button
             key={mood.id}
@@ -18,6 +20,6 @@ export default function MoodPicker({ moods, onSelect }: MoodPickerProps) {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }
