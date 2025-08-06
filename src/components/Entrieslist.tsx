@@ -47,6 +47,10 @@ export default function EntriesList({
               <p className="text-lg sm:text-xl whitespace-pre-wrap break-words mb-4">
                 <strong>Note:</strong> {entry.note}
               </p>
+              <p className="text-sm text-gray-500 italic">
+                <strong>Submitted:</strong>{" "}
+                {new Date(entry.timestamp).toLocaleString()}
+              </p>
               <div className="flex justify-end flex-wrap gap-3">
                 <button
                   onClick={() => onEdit(index)}
